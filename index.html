@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b6e4f">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="TTS Reader">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <title>Text to Speech Reader</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <div class="layout-grid">
+      <section class="panel text-panel">
+        <h3>Text</h3>
+        <div class="row wrap">
+          <label class="file-label" for="fileInput">Choose Text File</label>
+          <input id="fileInput" type="file" accept=".txt,text/plain">
+          <button id="useSampleBtn" class="ghost" type="button">Load Sample Text</button>
+        </div>
+        <p id="fileName" class="muted">No file selected.</p>
+        <textarea id="textInput" style="display:none;"></textarea>
+        <textarea id="textEditor" class="text-editor" style="display:none;" spellcheck="false" placeholder="Edit your text here. Each line is one entry. Lines starting with # are ignored."></textarea>
+        <div id="lineDisplay" class="line-display" aria-label="Text content with line numbers"><span class="line-display-empty">No text loaded yet.</span></div>
+        <div class="row" style="margin-top:0.5rem;">
+          <button id="editBtn" type="button" class="ghost">Edit</button>
+          <button id="doneEditBtn" type="button" style="display:none;">Done Editing</button>
+          <button id="cancelEditBtn" type="button" class="ghost" style="display:none;">Cancel</button>
+        </div>
+        <p id="charCount" class="muted">0 characters</p>
+      </section>
+
+      <div class="right-column">
+
+        <section class="panel">
+          <h3>Playback</h3>
+          <div class="grid playback-grid">
+            <label>
+              Start line #
+              <input id="startLine" type="number" min="1" step="1" value="1">
+            </label>
+            <label>
+              End line #
+              <input id="endLine" type="number" min="1" step="1" value="1">
+            </label>
+            <label>
+              Repeat each line # times
+              <input id="repeatCount" type="number" min="1" step="1" value="3">
+            </label>
+            <label>
+              Delay between lines (seconds)
+              <input id="lineDelay" type="number" min="0" step="5" value="5">
+            </label>
+          </div>
+          <p id="lineRangeInfo" class="muted">Playable range: 1 to 1</p>
+          <div class="row">
+            <button id="playBtn" type="button">Play</button>
+            <button id="pauseBtn" type="button" class="ghost">Pause</button>
+            <button id="resumeBtn" type="button" class="ghost">Resume</button>
+            <button id="stopBtn" type="button" class="danger">Stop</button>
+          </div>
+          <p id="status" class="status">Status: Idle</p>
+          <p id="activeLine" class="line-indicator">Active line: None</p>
+        </section>
+
+        <section class="panel">
+          <h3>Voice Settings</h3>
+          <div class="grid">
+            <label>
+              Voice
+              <select id="voiceSelect"></select>
+            </label>
+
+            <label>
+              Rate: <span id="rateValue">1.0</span>
+              <input id="rate" type="range" min="0.5" max="2" step="0.1" value="1">
+            </label>
+
+            <label>
+              Pitch: <span id="pitchValue">1.0</span>
+              <input id="pitch" type="range" min="0" max="2" step="0.1" value="1">
+            </label>
+
+            <label>
+              Volume: <span id="volumeValue">1.0</span>
+              <input id="volume" type="range" min="0" max="1" step="0.1" value="1">
+            </label>
+          </div>
+        </section>
+
+        </div>
+    </div>
+    <p class="subtitle">Pick a .txt file, preview the content, and play it using your browser voices. No server needed.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

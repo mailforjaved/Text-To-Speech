@@ -1,0 +1,6 @@
+# Lines starting with # are comments and will be ignored.
+# Edit this file with your own content.
+Welcome to your local dictionary reader.
+This website reads each line one by one.
+You can pause, resume, or stop playback at any time.
+The active line number updates while speech is playing.
